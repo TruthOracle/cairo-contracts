@@ -2,3 +2,4 @@ target
 account.json
 key.json
 .snfoundry_cache
+test/node_modules
