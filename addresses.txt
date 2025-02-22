@@ -1,10 +1,22 @@
+scarb build
+
+starkli account fetch \
+    0x07eCF9980139156FC1bF10E756EEe318c20bD738561F3d6C190d226c897c3A4a \
+    --output=account.json \
+    --network=mainnet
+
+starkli signer keystore from-key keystore.json
+
+export STARKNET_ACCOUNT=$(pwd)/account.json
+export STARKNET_KEYSTORE=$(pwd)/keystore.json
+
 starkli declare target/dev/truthoracle_MarketFactory.contract_class.json --network=mainnet
 
 starkli deploy \
-    0x00dd87311f592c7823b08cd591f1dc31ca10f842a329b10e2bbe0a05b5463c35 \
+    0x070646bec3ce3d46367b1af2b653ed64562fa039c744d95263f3cbaf5ba0d374 \
     0x07eCF9980139156FC1bF10E756EEe318c20bD738561F3d6C190d226c897c3A4a \
     --network=mainnet
 
-Contract Address - 0x00396a6f1c19633f019f565f680cd9a8f4326301e098a6b864e98f6819a37a77
-Class Hash - 0x00dd87311f592c7823b08cd591f1dc31ca10f842a329b10e2bbe0a05b5463c35
+Contract Address - 0x0289c4516f675cd5cf06b430f21f5fa295966f4743a0972667e0c8ea382ec399
+Class Hash - 0x070646bec3ce3d46367b1af2b653ed64562fa039c744d95263f3cbaf5ba0d374
 Contract Owner - 0x07eCF9980139156FC1bF10E756EEe318c20bD738561F3d6C190d226c897c3A4a

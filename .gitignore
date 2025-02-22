@@ -1,5 +1,6 @@
 target
 account.json
+keystore.json
 key.json
 .snfoundry_cache
 test/node_modules

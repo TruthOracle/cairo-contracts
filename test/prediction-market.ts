@@ -1,13 +1,11 @@
 import { Account, cairo, Contract, RpcProvider } from 'starknet';
 
 (async () => {
-  const privateKey = '0xFindThePrivateKey';
+  const privateKey = '0xFindPrivateKey';
   const accountAddress = '0x07eCF9980139156FC1bF10E756EEe318c20bD738561F3d6C190d226c897c3A4a';
   
   // prediction market contract address
-  const contractAddress = '0x00396a6f1c19633f019f565f680cd9a8f4326301e098a6b864e98f6819a37a77';
-  
-  // const account = new Account(provider, accountAddress, privateKey);
+  const contractAddress = '0x0289c4516f675cd5cf06b430f21f5fa295966f4743a0972667e0c8ea382ec399';
   
   const provider = new RpcProvider({
     chainId: '0x534e5f4d41494e' as any,
@@ -31,7 +29,16 @@ import { Account, cairo, Contract, RpcProvider } from 'starknet';
   contract.connect(account); 
 
   console.log('Caller Account Address: ', account.address);
+
+  // const addAdminCall = contract.populate('add_admin', [
+  //   accountAddress
+  // ]);
   
+  // const addAdminRes = await contract.add_admin(addAdminCall.calldata);
+
+  // const addAdminResponse = await provider.waitForTransaction(addAdminRes.transaction_hash);
+  // console.log('add_admin response: ', addAdminResponse);
+
   const createMarketCall = contract.populate('create_market', [
     "ETH at $5k by April 30, 2025?",
     "Will ETH Token pass $5k mark by April 30, 2025?",
@@ -42,9 +49,23 @@ import { Account, cairo, Contract, RpcProvider } from 'starknet';
   ]);
   
   const createMarketRes = await contract.create_market(createMarketCall.calldata);
+
+  // const createMarketCall = contract.populate('create_crypto_market', [
+  //   "ETH at $5k by April 30, 2025?",
+  //   "Will ETH Token pass $5k mark by April 30, 2025?",
+  //   cairo.tuple(cairo.felt('Yes'), cairo.felt('No')),
+  //   cairo.felt('Crypto Market'),
+  //   "https://i.postimg.cc/50qnRPqb/eth.png",
+  //   1746000000,
+  //   1,
+  //   cairo.felt(40000),
+  //   cairo.felt(40000),
+  // ]);
   
-  await provider.waitForTransaction(createMarketRes.transaction_hash);
+  // const createMarketRes = await contract.create_crypto_market(createMarketCall.calldata);
   
+  const response = await provider.waitForTransaction(createMarketRes.transaction_hash);
+  console.log('create_market response: ', response);
 })().catch(err => {
   console.error(err);
 });
