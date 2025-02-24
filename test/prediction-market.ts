@@ -39,6 +39,15 @@ import { Account, cairo, Contract, RpcProvider } from 'starknet';
   // const addAdminResponse = await provider.waitForTransaction(addAdminRes.transaction_hash);
   // console.log('add_admin response: ', addAdminResponse);
 
+  // const setTreasuryCall = contract.populate('set_treasury_wallet', [
+  //   accountAddress // it could be any wallet where you want to store platform fees
+  // ]);
+  
+  // const setTreasuryRes = await contract.set_treasury_wallet(setTreasuryCall.calldata);
+
+  // const setTreasuryResponse = await provider.waitForTransaction(setTreasuryRes.transaction_hash);
+  // console.log('set_treasury_wallet response: ', setTreasuryResponse);
+
   const createMarketCall = contract.populate('create_market', [
     "ETH at $5k by April 30, 2025?",
     "Will ETH Token pass $5k mark by April 30, 2025?",
